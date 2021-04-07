@@ -4,14 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 
 using Microsoft.Azure.CognitiveServices.Vision.Face;
@@ -66,7 +60,7 @@ namespace CoolApp
                 return;
             }
 
-            // Display the image file.
+            // Display the image file
             string filePath = openDlg.FileName;
 
             Uri fileUri = new Uri(filePath);
@@ -79,7 +73,7 @@ namespace CoolApp
 
             FacePhoto.Source = bitmapSource;
 
-            // Detect any faces in the image.
+            // Detect any faces in the image
             Title = "Detecting...";
             faceList = await UploadAndDetectFaces(filePath);
             Title = String.Format(
@@ -87,28 +81,29 @@ namespace CoolApp
 
             if (faceList.Count > 0)
             {
-                // Prepare to draw rectangles around the faces.
+                // Prepare to draw rectangles around the faces
                 DrawingVisual visual = new DrawingVisual();
                 DrawingContext drawingContext = visual.RenderOpen();
                 drawingContext.DrawImage(bitmapSource,
                     new Rect(0, 0, bitmapSource.Width, bitmapSource.Height));
                 double dpi = bitmapSource.DpiX;
-                // Some images don't contain dpi info.
+
+                // Some images don't contain dpi info
                 resizeFactor = (dpi == 0) ? 1 : 96 / dpi;
 
                 DetectedFace face = faceList[0];
                 faceDescription = FaceDescription(face);
 
-                // Set the status bar text.
+                // Set the status bar text
                 faceDescriptionStatusBar.Text = faceDescription;
             }
 
         }
 
-        // Uploads the image file and calls DetectWithStreamAsync.
+        // Uploads the image file and calls DetectWithStreamAsync
         private async Task<IList<DetectedFace>> UploadAndDetectFaces(string imageFilePath)
         {
-            // The list of Face attributes to return.
+            // The list of Face attributes to return
             IList<FaceAttributeType?> faceAttributes =
                 new FaceAttributeType?[]
                 {
@@ -122,43 +117,36 @@ namespace CoolApp
             {
                 using (Stream imageFileStream = File.OpenRead(imageFilePath))
                 {
-                    // The second argument specifies to return the faceId, while
-                    // the third argument specifies not to return face landmarks.
                     IList<DetectedFace> faceList =
                         await faceClient.Face.DetectWithStreamAsync(
                             imageFileStream, true, false, faceAttributes);
                     return faceList;
                 }
-            }
-            // Catch and display Face API errors.
-            catch (APIErrorException f)
+            } catch (APIErrorException f)
             {
                 MessageBox.Show(f.Message);
                 return new List<DetectedFace>();
-            }
-            // Catch and display all other errors.
-            catch (Exception e)
+            } catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error");
                 return new List<DetectedFace>();
             }
         }
 
-        // Creates a string out of the attributes describing the face.
+        // Creates a string out of the attributes describing the face
         private string FaceDescription(DetectedFace face)
         {
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Face: ");
 
-            // Add the gender, age, and smile.
             sb.Append(face.FaceAttributes.Gender);
             sb.Append(", ");
             sb.Append(face.FaceAttributes.Age);
             sb.Append(", ");
             sb.Append(String.Format("smile {0:F1}%, ", face.FaceAttributes.Smile * 100));
 
-            // Add the emotions. Display all emotions over 10%.
+            // Add the emotions. Display all emotions over 10%
             sb.Append("Emotion: ");
             Emotion emotionScores = face.FaceAttributes.Emotion;
             if (emotionScores.Anger >= 0.1f) sb.Append(
@@ -178,18 +166,16 @@ namespace CoolApp
             if (emotionScores.Surprise >= 0.1f) sb.Append(
                 String.Format("surprise {0:F1}%, ", emotionScores.Surprise * 100));
 
-            // Add glasses.
             sb.Append(face.FaceAttributes.Glasses);
             sb.Append(", ");
 
-            // Add hair.
             sb.Append("Hair: ");
 
-            // Display baldness confidence if over 1%.
+            // Display baldness confidence if over 1%
             if (face.FaceAttributes.Hair.Bald >= 0.01f)
                 sb.Append(String.Format("bald {0:F1}% ", face.FaceAttributes.Hair.Bald * 100));
 
-            // Display all hair color attributes over 10%.
+            // Display all hair color attributes over 10%
             IList<HairColor> hairColors = face.FaceAttributes.Hair.HairColor;
             foreach (HairColor hairColor in hairColors)
             {
@@ -200,7 +186,6 @@ namespace CoolApp
                 }
             }
 
-            // Return the built string.
             return sb.ToString();
         }
     }
