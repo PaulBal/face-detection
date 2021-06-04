@@ -5216,11 +5216,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Paul\\source\\repos\\WpfApp1\\WpfApp1.csproj",
-      "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\Paul\\source\\repos\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Paul\\source\\repos\\FaceAPI\\FaceAPI.csproj",
+      "projectName": "FaceAPI",
+      "projectPath": "C:\\Users\\Paul\\source\\repos\\FaceAPI\\FaceAPI.csproj",
       "packagesPath": "C:\\Users\\Paul\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Paul\\source\\repos\\WpfApp1\\obj\\",
+      "outputPath": "C:\\Users\\Paul\\source\\repos\\FaceAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5275,7 +5275,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,8 +14,8 @@ namespace CoolApp
 {
     public partial class MainWindow
     {
-        private static string subscriptionKey = "681e5c3785ed4f6ba7b9ff07449e18ee";
-        private static string faceEndpoint = "https://net-face-api.cognitiveservices.azure.com/";
+        private static string subscriptionKey = "f479bf5979c44c599d5c105972d19f8f";
+        private static string faceEndpoint = "https://paul-face-api.cognitiveservices.azure.com/";
 
         private readonly IFaceClient faceClient = new FaceClient(
             new ApiKeyServiceClientCredentials(subscriptionKey),

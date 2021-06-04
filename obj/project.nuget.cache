@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fW/4KGgbJvH53xOlGDfO3bJhF0xc0hGqtndvKBuUAtcB8L3Ew7YQa+B9KApgTHUXnL3XviDOIZ24NgjMlH+lPg==",
+  "dgSpecHash": "N2z5ASyn5aTYZmxt5ZUp3sMkaVMh/ECwyNJzPuR+wwNYjTy1MFPk/MzPA95xQf26vkMwcySXc9yDdL/KpZs0+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Paul\\source\\repos\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "C:\\Users\\Paul\\source\\repos\\FaceAPI\\FaceAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Paul\\.nuget\\packages\\microsoft.azure.cognitiveservices.vision.face\\2.6.0-preview.1\\microsoft.azure.cognitiveservices.vision.face.2.6.0-preview.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
